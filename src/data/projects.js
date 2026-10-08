@@ -1,0 +1,66 @@
+export const projects = [
+  {
+    slug: 'pixelquest',
+    title: 'PixelQuest',
+    type: 'Web Apps',
+    category: 'Game Catalog',
+    description: 'Web app to explore games using RAWG API with search, filters and favorites.',
+    tags: ['Vue.js', 'TailwindCSS', 'API'],
+    accent: 'violet',
+    demoUrl: null,
+    githubUrl: 'https://github.com/noureddinezn/Quiz_App',
+    overview:
+      'PixelQuest is a game catalog project built to practice API integration, search, filtering, and clean UI organization.',
+    features: ['Game search', 'Category filtering', 'Favorites workflow', 'Responsive catalog layout'],
+  },
+  {
+    slug: 'easycoloc',
+    title: 'EasyColoc',
+    type: 'Web Apps',
+    category: 'Colocation Management',
+    description:
+      'A modern web application to manage shared expenses between roommates with automatic balance calculation.',
+    tags: ['Laravel', 'PostgreSQL', 'Docker', 'TailwindCSS'],
+    accent: 'blue',
+    demoUrl: null,
+    githubUrl: 'https://github.com/noureddinezn/EasyColoc1',
+    overview:
+      'EasyColoc helps roommates manage shared expenses, split costs, track balances, and settle debts. The goal is to make shared living more transparent, organized, and fair.',
+    features: [
+      'Add, edit and delete expenses',
+      'Automatic debt calculation',
+      'Members management',
+      'Expense categories',
+      'Settlement tracking',
+      'Responsive design',
+    ],
+    stack: [
+      { name: 'Laravel', category: 'Backend', icon: 'fa-brands fa-laravel', color: '#ff2d20' },
+      { name: 'PostgreSQL', category: 'Database', icon: 'fa-solid fa-database', color: '#336791' },
+      { name: 'Docker', category: 'DevOps', icon: 'fa-brands fa-docker', color: '#1296db' },
+      { name: 'Tailwind CSS', category: 'Styling', icon: 'fa-solid fa-wind', color: '#38bdf8' },
+    ],
+    gallery: [
+      { title: 'Dashboard', variant: 'dashboard' },
+      { title: 'Expenses Management', variant: 'expenses' },
+      { title: 'Members Management', variant: 'members' },
+      { title: 'Settlements', variant: 'settlements' },
+      { title: 'Profile Settings', variant: 'profile' },
+      { title: 'Admin Overview', variant: 'admin' },
+    ],
+  },
+  {
+    slug: 'bibliotheque',
+    title: 'Bibliotheque',
+    type: 'Web Apps',
+    category: 'Library Management',
+    description: 'Manage books, users and borrows with an admin dashboard.',
+    tags: ['PHP', 'MySQL', 'MVC'],
+    accent: 'slate',
+    demoUrl: null,
+    githubUrl: 'https://github.com/Noureddine203',
+    overview:
+      'Bibliotheque is a library management project focused on books, users, borrow records, and administrative workflows.',
+    features: ['Book management', 'Borrow tracking', 'User management', 'Admin dashboard'],
+  },
+]
