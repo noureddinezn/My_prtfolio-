@@ -1,8 +1,10 @@
+import { contactEmail, gmailComposeUrl } from './contact'
+
 export const socials = [
   {
     name: 'GitHub',
-    label: 'github.com/Noureddinezn',
-    url: '',
+    label: 'github.com/noureddinezn',
+    url: 'https://github.com/noureddinezn',
     icon: 'fa-brands fa-github',
   },
   {
@@ -13,8 +15,8 @@ export const socials = [
   },
   {
     name: 'Email',
-    label: 'noureddinezouana@gmail.com',
-    url: '',
+    label: contactEmail,
+    url: gmailComposeUrl,
     icon: 'fa-solid fa-envelope',
   },
   {

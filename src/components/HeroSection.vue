@@ -1,5 +1,9 @@
 <script setup>
+import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import CvDialog from './CvDialog.vue'
+
+const cvDialog = ref(null)
 import TechOrbit from './TechOrbit.vue'
 
 const stats = [
@@ -26,10 +30,10 @@ const stats = [
           <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
           Contact Me
         </RouterLink>
-        <a class="btn btn-secondary" href="/CvNoureddinezouana.pdf" download>
+        <button class="btn btn-secondary" type="button" aria-haspopup="dialog" @click="cvDialog.open()">
           <i class="fa-solid fa-download" aria-hidden="true"></i>
           Download CV
-        </a>
+        </button>
       </div>
 
       <dl class="stats-grid">
@@ -41,5 +45,6 @@ const stats = [
     </div>
 
     <TechOrbit />
+    <CvDialog ref="cvDialog" />
   </section>
 </template>

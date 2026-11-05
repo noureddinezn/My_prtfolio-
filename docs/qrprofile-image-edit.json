@@ -1,0 +1,5 @@
+{
+  "mode": "built-in image_gen",
+  "destination": "public/images/projects/qrprofile/screenshots/09-admin-management-demo.png",
+  "prompt": "Use case: precise-object-edit / text replacement. Edit target: the attached mobile QRProfile admin screenshot. Replace only the user row personal name and email text with exactly 'Demo User · demo@example.com · user'. Keep all other content, interface, layout, dimensions, typography and crop unchanged. The original name and email must be fully removed and unreadable. Do not add other personal details. This is a privacy-safe portfolio screenshot."
+}

@@ -11,8 +11,8 @@ defineProps({
 
 <template>
   <article class="project-card" data-reveal>
-    <RouterLink class="project-preview" :class="`is-${project.accent}`" :to="`/projects/${project.slug}`">
-      <img v-if="project.screenshot" :src="project.screenshot" :alt="`${project.title} screenshot`" />
+    <RouterLink class="project-preview" :class="[`is-${project.accent}`, { 'is-portrait': project.screenshotFit === 'contain' }]" :to="`/projects/${project.slug}`">
+      <img v-if="project.screenshot" :src="project.screenshot" :alt="project.screenshotAlt || `${project.title} screenshot`" loading="lazy" />
       <template v-else>
         <div class="preview-sidebar"></div>
         <div class="preview-main">
@@ -45,9 +45,12 @@ defineProps({
         <RouterLink class="btn btn-primary btn-small" :to="`/projects/${project.slug}`">
           View Project <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
         </RouterLink>
-        <a class="btn btn-secondary btn-small" :href="project.githubUrl" target="_blank" rel="noopener noreferrer">
+        <a v-if="project.githubUrl" class="btn btn-secondary btn-small" :href="project.githubUrl" target="_blank" rel="noopener noreferrer">
           <i class="fa-brands fa-github" aria-hidden="true"></i>
           GitHub
+        </a>
+        <a v-else-if="project.demoUrl" class="btn btn-secondary btn-small" :href="project.demoUrl" target="_blank" rel="noopener noreferrer">
+          Live Site <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
         </a>
       </div>
     </div>

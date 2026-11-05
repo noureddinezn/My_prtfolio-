@@ -1,0 +1,90 @@
+{
+  "dark": [
+    {
+      "footerColor": "rgb(228, 237, 255)",
+      "link": "https://qrprofile.live/p/noureddine-zouana",
+      "overflow": [],
+      "qrLoaded": true,
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "footerColor": "rgb(228, 237, 255)",
+      "link": "https://qrprofile.live/p/noureddine-zouana",
+      "overflow": [],
+      "qrLoaded": true,
+      "theme": "dark",
+      "width": 390
+    },
+    {
+      "footerColor": "rgb(228, 237, 255)",
+      "link": "https://qrprofile.live/p/noureddine-zouana",
+      "overflow": [],
+      "qrLoaded": true,
+      "theme": "dark",
+      "width": 768
+    },
+    {
+      "footerColor": "rgb(228, 237, 255)",
+      "link": "https://qrprofile.live/p/noureddine-zouana",
+      "overflow": [],
+      "qrLoaded": true,
+      "theme": "dark",
+      "width": 1024
+    },
+    {
+      "footerColor": "rgb(228, 237, 255)",
+      "link": "https://qrprofile.live/p/noureddine-zouana",
+      "overflow": [],
+      "qrLoaded": true,
+      "theme": "dark",
+      "width": 1280
+    },
+    {
+      "footerColor": "rgb(228, 237, 255)",
+      "link": "https://qrprofile.live/p/noureddine-zouana",
+      "overflow": [],
+      "qrLoaded": true,
+      "theme": "dark",
+      "width": 1440
+    }
+  ],
+  "light": [
+    {
+      "color": "rgb(33, 55, 84)",
+      "overflow": 0,
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "color": "rgb(33, 55, 84)",
+      "overflow": 0,
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "color": "rgb(33, 55, 84)",
+      "overflow": 0,
+      "theme": "light",
+      "width": 768
+    },
+    {
+      "color": "rgb(33, 55, 84)",
+      "overflow": 0,
+      "theme": "light",
+      "width": 1024
+    },
+    {
+      "color": "rgb(33, 55, 84)",
+      "overflow": 0,
+      "theme": "light",
+      "width": 1280
+    },
+    {
+      "color": "rgb(33, 55, 84)",
+      "overflow": 0,
+      "theme": "light",
+      "width": 1440
+    }
+  ]
+}

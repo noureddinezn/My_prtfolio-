@@ -47,7 +47,8 @@ const gallery = computed(() => project.value?.gallery || [])
       </div>
 
       <div class="project-hero-visual">
-        <ProjectMockup variant="dashboard" title="Dashboard" />
+        <img v-if="project.screenshot" class="project-hero-screenshot" :style="{ objectFit: project.screenshotFit || 'cover' }" :src="project.screenshot" :alt="project.screenshotAlt || `${project.title} screenshot`" />
+        <ProjectMockup v-else variant="dashboard" title="Dashboard" />
       </div>
     </section>
 
@@ -55,7 +56,7 @@ const gallery = computed(() => project.value?.gallery || [])
       <article>
         <i class="fa-regular fa-images" aria-hidden="true"></i>
         <strong>{{ gallery.length || 1 }}</strong>
-        <span>Screenshots</span>
+        <span>{{ project.galleryLabel || 'Screenshots' }}</span>
       </article>
       <article v-for="item in stack.slice(0, 4)" :key="item.name">
         <i :class="item.icon" aria-hidden="true" :style="{ color: item.color }"></i>
@@ -92,16 +93,50 @@ const gallery = computed(() => project.value?.gallery || [])
       </article>
     </div>
 
+    <section v-if="project.process?.length" class="section-card project-story-panel">
+      <h2><i class="fa-solid fa-code" aria-hidden="true"></i> How I Built It</h2>
+      <div class="project-story-grid">
+        <article v-for="(step, index) in project.process" :key="step.title">
+          <span class="project-step-number">0{{ index + 1 }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </article>
+      </div>
+    </section>
+
+    <section v-if="project.deployment?.length" class="section-card project-story-panel">
+      <h2><i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i> Deployment</h2>
+      <div class="project-story-grid">
+        <article v-for="step in project.deployment" :key="step.title">
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </article>
+      </div>
+      <a v-if="project.demoUrl" class="btn btn-primary" :href="project.demoUrl" target="_blank" rel="noopener noreferrer">
+        Visit {{ project.title }} <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+      </a>
+    </section>
+
     <section v-if="gallery.length" class="section-card project-gallery-panel">
       <div class="section-heading compact">
         <h2><i class="fa-regular fa-image" aria-hidden="true"></i> Project Gallery</h2>
-        <span class="gallery-count"><i class="fa-regular fa-images" aria-hidden="true"></i> Screenshots</span>
+        <span class="gallery-count"><i class="fa-regular fa-images" aria-hidden="true"></i> {{ gallery.length }} {{ project.galleryLabel || 'screenshots' }} · Tap to view full size</span>
       </div>
 
+      <p v-if="project.galleryNote" class="project-gallery-note">{{ project.galleryNote }}</p>
+      <div v-if="project.resources?.length" class="project-resource-links">
+        <a v-for="resource in project.resources" :key="resource.href" class="btn btn-secondary btn-small" :href="resource.href" download>
+          <i class="fa-solid fa-download" aria-hidden="true"></i> {{ resource.title }}
+        </a>
+      </div>
       <div class="project-gallery-grid">
         <article v-for="item in gallery" :key="item.title" class="gallery-item">
-          <ProjectMockup :variant="item.variant" :title="item.title" compact />
+          <a v-if="item.src" :href="item.src" target="_blank" rel="noopener noreferrer" :aria-label="`View ${item.title} ${project.galleryLabel ? 'preview' : 'screenshot'}`">
+            <img class="gallery-screenshot" :style="{ objectFit: item.fit || project.screenshotFit || 'cover' }" :src="item.src" :alt="`${project.title} — ${item.title}`" loading="lazy" />
+          </a>
+          <ProjectMockup v-else :variant="item.variant" :title="item.title" compact />
           <strong>{{ item.title }}</strong>
+          <p v-if="item.description" class="gallery-description">{{ item.description }}</p>
         </article>
       </div>
     </section>
