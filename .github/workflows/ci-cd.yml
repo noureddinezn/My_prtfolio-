@@ -41,10 +41,68 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
+  vercel_diagnostics:
+    name: Vercel read-only diagnostics
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions: {}
+    environment:
+      name: production
+      deployment: false
+    steps:
+      - name: Check Vercel project access
+        shell: bash
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import http.client
+          import os
+
+          # Fingerprints of the independently verified project and team IDs.
+          expected_project = "309146eab2adbc572e388641353406120f6a1354a8a5b6841f503a66058c4e1e"
+          expected_team = "54d2f91b09adf90de522475ea4be7951da943739fe989b10d5399f37ec5e1874"
+
+          def matches(name, expected):
+              value = os.environ.get(name, "")
+              return hashlib.sha256(value.encode("utf-8")).hexdigest() == expected
+
+          def yes_no(value):
+              return "yes" if value else "no"
+
+          token = os.environ.get("VERCEL_TOKEN", "")
+          print(f"Token available: {yes_no(bool(token))}")
+          print(f"Project ID matches: {yes_no(matches('VERCEL_PROJECT_ID', expected_project))}")
+          print(f"Team ID matches: {yes_no(matches('VERCEL_ORG_ID', expected_team))}")
+
+          status = "not requested"
+          if token:
+              connection = http.client.HTTPSConnection("api.vercel.com", timeout=20)
+              try:
+                  connection.request(
+                      "GET",
+                      "/v9/projects/project-1ib99?slug=noureddinezn",
+                      headers={"Authorization": f"Bearer {token}"},
+                  )
+                  with connection.getresponse() as response:
+                      status = str(response.status)
+              except (OSError, http.client.HTTPException, ValueError):
+                  status = "unavailable"
+              finally:
+                  connection.close()
+
+          print(f"Known-good endpoint HTTP status: {status}")
+          PY
+
   deploy:
     name: Vercel production
     needs: ci
-    if: needs.ci.result == 'success' && github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    # Temporary pause while the Vercel lookup is diagnosed.
+    if: false && needs.ci.result == 'success' && github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment: production
