@@ -69,4 +69,10 @@ export const technologies = [
     category: 'Tools',
     description: 'Manage version control and collaborative workflows.',
   },
+  {"name": "Java", "icon": "fa-brands fa-java", "color": "#e76f00", "category": "Backend", "description": "Develop object-oriented applications with Java.", "showInOrbit": false},
+  {"name": "Spring", "icon": "fa-solid fa-leaf", "color": "#6db33f", "category": "Backend", "description": "Build Java applications using dependency injection and the Spring ecosystem.", "showInOrbit": false},
+  {"name": "Spring Boot", "icon": "fa-solid fa-power-off", "color": "#6db33f", "category": "Backend", "description": "Create standalone Spring applications and REST APIs.", "showInOrbit": false},
+  {"name": "Jakarta EE (JEE)", "icon": "fa-solid fa-cubes", "color": "#ef8e22", "category": "Backend", "description": "Build enterprise Java applications with Jakarta EE APIs.", "showInOrbit": false},
+  {"name": "Codex", "icon": "fa-solid fa-terminal", "color": "#4285f4", "category": "Tools", "description": "Use AI assistance for coding, debugging, and development workflows.", "showInOrbit": false},
+  {"name": "GitHub Copilot", "icon": "fa-solid fa-robot", "color": "#8250df", "category": "Tools", "description": "Use AI coding suggestions while reviewing and validating the resulting code.", "showInOrbit": false},
 ]

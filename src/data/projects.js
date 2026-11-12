@@ -1,6 +1,7 @@
 export const projects = [
   {
     "slug": "qrprofile",
+    "types": ["Web Apps", "APIs"],
     "title": "QR_Profile",
     "screenshot": "/images/projects/qrprofile/screenshots/01-login.jpg",
     "screenshotFit": "contain",
@@ -198,6 +199,7 @@ export const projects = [
   },
   {
     "slug": "vitalmind",
+    "types": ["Web Apps", "Games"],
     "title": "Vital Mind",
     "screenshot": "/images/projects/vitalmind/screenshots/01-home.png",
     "type": "Web Apps",
@@ -342,6 +344,7 @@ export const projects = [
   },
   {
     "slug": "bricoletrust",
+    "types": ["Web Apps", "APIs"],
     "title": "BricoleTrust",
     "screenshot": "/images/projects/bricoletrust/screenshots/01-home.png",
     "type": "Web Apps",
