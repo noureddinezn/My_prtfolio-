@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.vercel/
+
+# Covers .env.local, .env.*.local, and other dotenv files.
+.env*
+
+test-results/
+playwright-report/
+coverage/
+test-build/

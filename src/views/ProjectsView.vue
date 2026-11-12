@@ -1,27 +1,15 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import ProjectCard from '../components/ProjectCard.vue'
 import { projects } from '../data/projects'
 
-const filters = ['All', 'Web Apps', 'APIs', 'Mobile', 'Games', 'Other']
-const activeFilter = ref('All')
+import { projectFilters, filterProjects } from '../data/projectFilters'
+import { useScrollReveal } from '../composables/useScrollReveal'
 
-const filteredProjects = computed(() => {
-  if (activeFilter.value === 'All') {
-    return projects
-  }
-
-  return projects.filter((project) => project.type === activeFilter.value)
-})
-
-const filterIcons = {
-  All: 'fa-solid fa-border-all',
-  'Web Apps': 'fa-solid fa-desktop',
-  APIs: 'fa-solid fa-server',
-  Mobile: 'fa-solid fa-mobile-screen-button',
-  Games: 'fa-solid fa-gamepad',
-  Other: 'fa-solid fa-shapes',
-}
+const activeFilter = ref('Web Apps')
+const filteredProjects = computed(() => filterProjects(projects, activeFilter.value))
+const { reveal } = useScrollReveal()
+watch(filteredProjects, reveal, { flush: 'post' })
 </script>
 
 <template>
@@ -37,20 +25,28 @@ const filterIcons = {
 
     <div class="project-filters" aria-label="Filter projects by type">
       <button
-        v-for="filter in filters"
-        :key="filter"
+        v-for="filter in projectFilters"
+        :key="filter.label"
         type="button"
         class="project-filter"
-        :class="{ 'is-active': activeFilter === filter }"
-        @click="activeFilter = filter"
+        :class="{ 'is-active': activeFilter === filter.label }"
+        @click="activeFilter = filter.label"
+        :aria-pressed="activeFilter === filter.label"
       >
-        <i :class="filterIcons[filter]" aria-hidden="true"></i>
-        {{ filter }}
+        <i :class="filter.icon" aria-hidden="true"></i>
+        {{ filter.label }}
       </button>
     </div>
 
-    <div class="projects-grid page-projects-grid">
+    <div class="projects-grid page-projects-grid" aria-live="polite" aria-atomic="false">
       <ProjectCard v-for="project in filteredProjects" :key="project.title" :project="project" />
     </div>
+    <p v-if="!filteredProjects.length" class="project-empty" role="status">No projects in this category yet.</p>
   </section>
 </template>
+
+<style scoped>
+.project-filters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 420px) { .project-filters { gap: 8px; } .project-filter { padding-inline: 8px; font-size: .8rem; } }
+.project-empty { padding: 32px; border: 1px solid var(--color-border); border-radius: 16px; background: var(--color-surface); text-align: center; color: var(--color-muted); }
+</style>

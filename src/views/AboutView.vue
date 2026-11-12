@@ -76,6 +76,7 @@ const categoryIcons = {
           type="button"
           class="skill-filter"
           :class="{ 'is-active': activeCategory === category }"
+          :aria-pressed="activeCategory === category"
           @click="activeCategory = category"
         >
           <i :class="categoryIcons[category]" aria-hidden="true"></i>

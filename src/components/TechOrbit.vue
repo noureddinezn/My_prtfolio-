@@ -1,6 +1,8 @@
 <script setup>
 import profileImage from '../assets/images/profile.png'
 import { technologies } from '../data/technologies'
+
+const orbitTechnologies = technologies.filter((technology) => technology.showInOrbit !== false)
 </script>
 
 <template>
@@ -11,11 +13,11 @@ import { technologies } from '../data/technologies'
     </div>
 
     <div
-      v-for="(tech, index) in technologies"
+      v-for="(tech, index) in orbitTechnologies"
       :key="tech.name"
       class="tech-node"
       :style="{
-        '--angle': `${index * (360 / technologies.length) - 90}deg`,
+        '--angle': `${index * (360 / orbitTechnologies.length) - 90}deg`,
         '--tech-color': tech.color,
       }"
     >
